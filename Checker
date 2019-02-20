@@ -1,4 +1,3 @@
-
 /**
  * A simple program to check if a game of connect four has been won.
  * 
@@ -9,7 +8,7 @@ public class Checker {
 	/**
 	 * Tests the array values for a completed connect four
 	 * 
-	 * @param b (two dimensional integer array 
+	 * @param b (two dimensional integer array
 	 * @return 0 if the game has not been won, 1 if the first player has won, and 2
 	 *         if the second player has won.
 	 */
@@ -36,7 +35,7 @@ public class Checker {
 				}
 			}
 		}
-		for (int y = 0; y < 3; y++) { // checks diagonally right to left,  top to bottom
+		for (int y = 0; y < 3; y++) { // checks diagonally right to left, top to bottom
 			for (int x = 4; x > 0; x--) {
 				if (b[x][y] == b[x - 1][y + 1] && b[x][y] == b[x - 2][y + 2] && b[x][y] == b[x - 3][y + 3]
 						&& b[x][y] != 0) {
@@ -44,15 +43,15 @@ public class Checker {
 				}
 			}
 		}
-		for (int y = 3; y > 0; y++) { // checks diagonally left to right,  bottom to top
-			for (int x = 0; x  < 4; x++) {
+		for (int y = 3; y > 0; y++) { // checks diagonally left to right, bottom to top
+			for (int x = 0; x < 4; x++) {
 				if (b[x][y] == b[x + 1][y - 1] && b[x][y] == b[x + 2][y - 2] && b[x][y] == b[x + 3][y - 3]
 						&& b[x][y] != 0) {
 					return b[x][y];
 				}
 			}
 		}
-		for (int y = 3; y > 0; y--) { // checks diagonally right to left,  bottom to top
+		for (int y = 3; y > 0; y--) { // checks diagonally right to left, bottom to top
 			for (int x = 4; x > 0; x--) {
 				if (b[x][y] == b[x - 1][y - 1] && b[x][y] == b[x - 2][y - 2] && b[x][y] == b[x - 3][y - 3]
 						&& b[x][y] != 0) {
