@@ -55,4 +55,12 @@ public class Board {
 	public int whoseTurn(int currentTurnsPlayed) {
 		return (currentTurnsPlayed % 2 + 1);
 	}
+	
+	/**
+	* Returns the board to be passed and checked for if somebody has won.
+	* @return returns current state of the board.
+	*/
+	public int[][] returnBoard(){
+		return gameBoard;
+	}
 }
