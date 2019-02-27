@@ -9,6 +9,14 @@ package toprow;
 * their piece
 * When the dpad is pushed right or left this should move 
 * an LED over to the left or right.
+* 
+* After every turn, a TopRow should be reset and use the 
+* constructor to see what team is playing
+* 
+* Make 2 variables, one for blue and red that will store
+* the respective color value. If blue is sent to constructor,
+* then color = blue, else color = red.
+* 
 */ 
 public class TopRow {
 	/**
@@ -26,16 +34,19 @@ public class TopRow {
 	/**
 	* Stores the current position of the blinking light
 	*/
-	private int currentPos = 0;
+	private int currentPos;
 	
 	/**
 	* Makes a new TopRow object with all colors set to zero.
 	*/
 	public TopRow()
 	{
-		for (int i = 0; i < numCols; i++) {
+		currentPos = 0;
+		
+		for (int i = 1; i < numCols; i++) {
 			colors[i] = 0;
 		}
+		colors[currentPos] = 1;
 	}
 	
 	/**
@@ -56,6 +67,7 @@ public class TopRow {
 	* Moves the position of the LED over right by one
 	*/
 	public void moveRight() {
+		//need to add a test to see what team is placing a piece
 		if (currentPos < numCols - 1)
 		{
 			colors[currentPos] = 0;
