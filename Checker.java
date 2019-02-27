@@ -1,5 +1,3 @@
-package ConnectFour;
-
 /**
  * A simple program to check if a game of connect four has been won.
  * 
