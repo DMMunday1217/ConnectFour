@@ -1,3 +1,5 @@
+package connectFour;
+
 import java.util.*;
 
 /**
@@ -53,7 +55,6 @@ public class ComPlayer {
 			// piece placement for an easy bot
 			return rand.nextInt(7) + 1;
 		}
-		return 0;
 	}
 
 	private int findPlace() {
@@ -89,7 +90,8 @@ public class ComPlayer {
 		}
 		for (int y = HEIGHT - 1; y > HEIGHT - 3; y--) { // checks diagonally left to right, bottom to top
 			for (int x = 0; x < WIDTH - 3; x++) {
-				if (b[x][y] == b[x + 1][y - 1] && b[x][y] == b[x + 2][y - 2] && 0 == b[x + 3][y - 3] && b[x][y] != 0) {
+				if (b[x][y] == b[x + 1][y - 1] && b[x][y] == b[x + 2][y - 2] && 0 == b[x + 3][y - 3] && b[x][y] != 0
+						&& b[x + 3][y - 2] != 0) {
 					return x + 3;
 				}
 			}
@@ -97,7 +99,7 @@ public class ComPlayer {
 		for (int y = HEIGHT - 1; y > HEIGHT - 3; y--) { // checks diagonally right to left, bottom to top
 			for (int x = WIDTH - 1; x > WIDTH - 4; x--) {
 				if (b[x][y] == b[x - 1][y - 1] && b[x][y] == b[x - 2][y - 2] && 0 == b[x - 3][y - 3] && b[x][y] != 0
-						&& b[x - 3][y] == 0) {
+						&& b[x - 3][y - 2] != 0) {
 					return x - 3;
 				}
 			}
