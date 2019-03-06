@@ -56,7 +56,7 @@ public class ComPlayer {
 			} else if (checkGaps() != -1) {
 				//in the case of a row going 1011, places a piece in the spot that is empty.
 				//This occurs regardless of which team has a piece there
-				return checkGaps();
+				return checkGaps() + 1;
 			} else {
 				//if the bot can't find a better location, it places it like an easy bot
 				return rand.nextInt(7) + 1;
