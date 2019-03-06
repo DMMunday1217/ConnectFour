@@ -46,8 +46,12 @@ public class ComPlayer {
 		Random rand = new Random();
 		if (hardMode) {
 			// piece placement for a hard bot
-			if (this.findPlace() != -1) {
-				return this.findPlace() + 1;
+			if(earlyGame() != -1) {
+				return earlyGame();
+			} else if (findPlace() != -1) {
+				return findPlace() + 1;
+			} else if (checkGaps() != -1) {
+				return checkGaps();
 			} else {
 				return rand.nextInt(7) + 1;
 			}
@@ -55,6 +59,47 @@ public class ComPlayer {
 			// piece placement for an easy bot
 			return rand.nextInt(7) + 1;
 		}
+	}
+	private int earlyGame() {
+		if(b[6][3] == 0) {
+			return 4;
+		} else if(b[6][2] == 0) {
+			return 3;
+		}else if(b[6][4] == 0) {
+			return 5;
+		}else {
+			return -1;
+		}
+	}
+	private int checkGaps() {
+		for (int y = 0; y < HEIGHT; y++) {// checks 3rd spot in a set of 4
+			for (int x = 0; x < WIDTH - 3; x++) {
+				if (b[x][y] == b[x + 1][y] && b[x][y] == b[x + 3][y] && b[x][y] != 0) {
+					if (y == 0 || b[x + 2][y - 1] != 0) {
+						return x + 2;
+					}
+				}
+			}
+		}
+		for (int y = 0; y < HEIGHT; y++) {// checks 2nd spot in a set of 4
+			for (int x = 0; x < WIDTH - 3; x++) {
+				if (b[x][y] == b[x + 2][y] && b[x][y] == b[x + 3][y] && b[x][y] != 0) {
+					if (y == 0 || b[x + 1][y - 1] != 0) {
+						return x + 1;
+					}
+				}
+			}
+		}
+		for (int y = 0; y < HEIGHT; y++) {// checks 1st spot in a set of 4
+			for (int x = 0; x < WIDTH - 3; x++) {
+				if (b[x + 1][y] == b[x + 2][y] && b[x][y] == b[x + 3][y] && b[x][y] != 0) {
+					if (y == 0 || b[x][y - 1] != 0) {
+						return x;
+					}
+				}
+			}
+		}
+		return -1;
 	}
 
 	private int findPlace() {
