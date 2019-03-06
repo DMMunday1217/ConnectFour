@@ -47,12 +47,18 @@ public class ComPlayer {
 		if (hardMode) {
 			// piece placement for a hard bot
 			if(earlyGame() != -1) {
+				//if the middle 3 in the bottom row are open, it places it in one of those spaces, prioritizing the center one. 
+				//This keeps a player from winning ny putting pieces in the loactions 4, 3, 2, and then 1.
 				return earlyGame();
 			} else if (findPlace() != -1) {
+				//checks for 3 in a rows, if any are found, it places a piece in in the fourth spot
 				return findPlace() + 1;
 			} else if (checkGaps() != -1) {
+				//in the case of a row going 1011, places a piece in the spot that is empty.
+				//This occurs regardless of which team has a piece there
 				return checkGaps();
 			} else {
+				//if the bot can't find a better location, it places it like an easy bot
 				return rand.nextInt(7) + 1;
 			}
 		} else {
@@ -60,6 +66,7 @@ public class ComPlayer {
 			return rand.nextInt(7) + 1;
 		}
 	}
+	
 	private int earlyGame() {
 		if(b[6][3] == 0) {
 			return 4;
@@ -71,6 +78,7 @@ public class ComPlayer {
 			return -1;
 		}
 	}
+	
 	private int checkGaps() {
 		for (int y = 0; y < HEIGHT; y++) {// checks 3rd spot in a set of 4
 			for (int x = 0; x < WIDTH - 3; x++) {
