@@ -50,7 +50,7 @@ public class Board {
 			columnFull = true;
 			System.out.println("Please choose new column");
 		}
-		for (int j = HEIGHT - 1; j > 0; j--) {
+		for (int j = HEIGHT - 1; j >= 0; j--) {
 			if (gameBoard[columnNum][j] == 0 && columnFull == false) {
 				gameBoard[columnNum][j] = whoseTurn(currentTurnsPlayed);
 				placedThisTurn = true;
