@@ -23,7 +23,11 @@ public class GameBoardTest {
 				System.out.println("");
 
 				if (Checker.winTest(playBoard.returnBoard()) == 0) {
-					playBoard.placePiece(AIPlayer.placePiece(playBoard.returnBoard()));
+					int loc;
+					do {
+						loc = AIPlayer.placePiece(playBoard.returnBoard());
+					} while(!playBoard.placePiece(loc));
+					System.out.println("Computer Player placing at: " + loc);
 				}
 
 				playBoard.printBoard();
