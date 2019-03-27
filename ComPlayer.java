@@ -122,7 +122,7 @@ public class ComPlayer {
 		for (int y = 0; y < HEIGHT - 3; y++) { // checks vertically from left to right
 			for (int x = 0; x < WIDTH; x++) {
 				if (b[x][y] == b[x][y + 1] && b[x][y] == b[x][y + 2] && b[x][y] != 0 && b[x][y + 3] == 0) {
-					return y + 3;
+					return x + 1;
 				}
 			}
 		}
