@@ -68,13 +68,13 @@ public class ComPlayer {
 	}
 	
 	private int earlyGame() {
-		if(b[3][0] == 0) {
+		if (b[3][HEIGHT - 1] == 0) {
 			return 4;
-		} else if(b[2][0] == 0) {
+		} else if (b[2][HEIGHT - 1] == 0) {
 			return 3;
-		}else if(b[4][0] == 0) {
+		} else if (b[4][HEIGHT - 1] == 0) {
 			return 5;
-		}else {
+		} else {
 			return -1;
 		}
 	}
