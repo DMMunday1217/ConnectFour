@@ -1,6 +1,4 @@
-package gameBoard;
-
-import java.util.*;
+package connectFour;
 
 public class Board {
 
@@ -42,13 +40,14 @@ public class Board {
 	 * 
 	 * @param columnNum the number of column that they chose to place the piece
 	 */
-	public void placePiece(int columnNum) {
-		columnNum --;
+	public boolean placePiece(int columnNum) {
+		columnNum--;
 		boolean placedThisTurn = false;
 		boolean columnFull = false;
-		if (gameBoard[columnNum][HEIGHT - 1] > 0) {
+		if (gameBoard[columnNum][0] > 0) {
 			columnFull = true;
 			System.out.println("Please choose new column");
+			return false;
 		}
 		for (int j = HEIGHT - 1; j >= 0; j--) {
 			if (gameBoard[columnNum][j] == 0 && columnFull == false) {
@@ -59,7 +58,9 @@ public class Board {
 		}
 		if (placedThisTurn == true && columnFull == false) {
 			currentTurnsPlayed++;
+			return true;
 		}
+		return false;
 
 	}
 
@@ -86,7 +87,7 @@ public class Board {
 			System.out.println("");
 		}
 	}
-	
+
 	public int returnTurns() {
 		return currentTurnsPlayed;
 	}
