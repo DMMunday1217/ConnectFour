@@ -1,6 +1,6 @@
-package connectFour;
+package ConnectFour;
 
-import connectFour.ComPlayer;
+import ConnectFour.ComPlayer;
 import java.util.*;
 
 public class GameBoardTest {

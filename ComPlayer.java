@@ -1,4 +1,4 @@
-package connectFour;
+package ConnectFour;
 
 import java.util.*;
 

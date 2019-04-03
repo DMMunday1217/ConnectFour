@@ -1,4 +1,4 @@
-package connectFour;
+package ConnectFour;
 
 public class Board {
 
