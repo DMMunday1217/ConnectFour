@@ -9,7 +9,7 @@ import java.util.*;
  *
  */
 public class ComPlayer {
-	private static final boolean DEBUG = false;
+	private static final boolean DEBUG = true;
 	/**
 	 * difficulty level. false if easy, true if hard
 	 */
@@ -127,7 +127,7 @@ public class ComPlayer {
 		for (int y = 0; y < HEIGHT - 3; y++) { // checks diagonally left to right, bottom to top
 			for (int x = 0; x < WIDTH - 3; x++) {
 				if (b[x][y] == b[x + 1][y + 1] && b[x][y] == b[x + 2][y + 2] && 0 == b[x + 3][y + 3] && b[x][y] != 0
-						&& (y + 4 < HEIGHT && b[x + 3][y + 4] == 0)) {
+						&& (y + 3 < HEIGHT && b[x + 3][y + 3] == 0)) {
 					if (b[x + 3][0] == 0) {
 						if (DEBUG)
 							System.out.println("Diag 1");
@@ -171,6 +171,19 @@ public class ComPlayer {
 				}
 			}
 		}
+		for (int y = 0; y < HEIGHT - 3; y++) {
+			for (int x = 0; x < WIDTH - 3; x++) {
+				if (b[x + 1][y + 1] == b[x + 2][y + 2] && b[x + 1][y + 1] == b[x + 3][y + 3] && b[x][y] == 0
+						&& b[x + 1][y + 1] != 0 && b[x][y + 1] != 0) {
+					if (b[x][0] == 0) {
+						if (DEBUG)
+							System.out.println("Diag 5");
+						return x;
+					}
+				}
+			}
+		}
+		
 		return -1;
 	}
 
