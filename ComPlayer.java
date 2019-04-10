@@ -55,6 +55,8 @@ public class ComPlayer {
 				// in the case of a row going 1011, places a piece in the spot that is empty.
 				// This occurs regardless of which team has a piece there
 				return checkHoroz() + 1;
+			} else if (diagFill() != -1) {
+				return diagFill() + 1;
 			} else {
 				// if the bot can't find a better location, it places it like an easy bot
 				if (DEBUG)
@@ -183,8 +185,48 @@ public class ComPlayer {
 				}
 			}
 		}
-		
+
 		return -1;
+	}
+
+	private int diagFill() {
+		for (int y = 0; y < HEIGHT - 3; y++) {
+			for (int x = 0; x < WIDTH - 3; x++) {
+				if (b[x][y] == b[x + 1][y + 1] && b[x][y] == b[x + 3][y + 3] && b[x + 2][y + 2] == 0
+						&& b[x + 2][y + 3] != 0 && b[x][y] != 0) {
+					if (DEBUG)
+						SOP("diag dr 3");
+					return x + 2; // fills third position diagonally downward
+				}
+				if (b[x][y] == b[x + 2][y + 2] && b[x][y] == b[x + 3][y + 3] && b[x + 1][y + 1] == 0
+						&& b[x + 1][y + 2] != 0 && b[x][y] != 0) {
+					if (DEBUG)
+						SOP("diag dr 2");
+					return x + 1; // fills second position diagonally downward
+				}
+			}
+		}
+		for (int y = HEIGHT - 1; y > 2; y--) {
+			for (int x = 0; x < WIDTH - 3; x++) {
+				if (b[x][y] == b[x + 1][y - 1] && b[x][y] == b[x + 3][y - 3] && b[x + 2][y - 2] == 0
+						&& b[x + 2][y - 3] != 0 && b[x][y] != 0) {
+					if (DEBUG)
+						SOP("diag ur 3");
+					return x + 2; // fills third position diagonally downward
+				}
+				if (b[x][y] == b[x + 2][y - 2] && b[x][y] == b[x + 3][y - 3] && b[x + 1][y - 1] == 0
+						&& b[x + 1][y - 2] != 0 && b[x][y] != 0) {
+					if (DEBUG)
+						SOP("diag ur 2");
+					return x + 1; // fills second position diagonally downward
+				}
+			}
+		}
+		return -1;
+	}
+
+	private void SOP(String s) {
+		System.out.println(s);
 	}
 
 }
