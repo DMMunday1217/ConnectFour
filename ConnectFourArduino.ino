@@ -84,21 +84,23 @@ void displayTop(int input){
 
 int dPad(){
   int output = 3;
+  displayTop(output);
   button1State = digitalRead(button1);
-  while(button1State == HIGH){
+  while(button1State == LOW){
     button0State = digitalRead(button0);
     button2State = digitalRead(button2);
-    if(button0State == LOW && output > 0){
+    if(button0State == HIGH && output > 0){
       output--;
+      delay(250);
+      displayTop(output);
     }
-    else if(button2State == LOW && output < 6){
+    else if(button2State == HIGH && output < 6){
       output++;
+      delay(250);
+      displayTop(output);
     }
-    displayTop(output);
     button1State = digitalRead(button1);
-    delay(500);
   }
-  
   return output;
 }
 
@@ -153,10 +155,14 @@ int checkWin(int b[HEIGHT][WIDTH]){
 }
   
 
-void setup() { FastLED.addLeds<NEOPIXEL, 0>(leds, NUM_LEDS); FastLED.show();
+void setup() { 
+  digitalWrite(0,LOW);
+  FastLED.addLeds<NEOPIXEL, 0>(leds, NUM_LEDS);
   FastLED.setBrightness(50);
   srand(time(NULL));
   pinMode(button0, INPUT);
+  pinMode(button1, INPUT);
+  pinMode(button2, INPUT);
 }
 
 void loop() {
@@ -165,8 +171,8 @@ void loop() {
   while(checkWin(arr) == -1 && turnCount < 48){
       
       display(arr);
-      //input = rand() % 7;
       input = dPad();
+      delay(500);
       for(int i = 0; i < 6; i++){
         if(arr[input][i] == -1){
           arr[input][i] = turn;
@@ -180,8 +186,10 @@ void loop() {
       display(arr);
       turnCount++;
   }
-  delay(2000);
-  while(1){
+  delay(1000);
+  button1State = digitalRead(button1);
+  while(button1State == LOW){
       fill_solid(leds, 49, CRGB::Green); FastLED.show();
+      button1State = digitalRead(button1);
   }
 }
